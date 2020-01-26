@@ -1,14 +1,14 @@
 #!/usr/local/bin/python3
 from selenium import webdriver
 #from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.chrome.options import Options
 import datetime
 import csv
 
-# HEADLESSブラウザに接続
-browser = webdriver.Remote(
-    command_executor='http://selenium-hub:4444/wd/hub',
-    desired_capabilities=DesiredCapabilities.CHROME)
+options = webdriver.ChromeOptions()
+options.add_argument('--headless')
+options.add_argument('--no-sandbox')
+browser = webdriver.Chrome(options=options)
 
 # csvファイル作成用に日付を取得
 dt = datetime.datetime.today()
